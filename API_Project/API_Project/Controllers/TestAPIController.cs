@@ -12,7 +12,7 @@ namespace API_Project.Controllers
     [ApiController]
     public class TestAPIController : Controller
     {
-        static public List<string> users = new List<string>();
+        static public List<User> users = new List<User>();
 
         [HttpGet]
         public object getUsers()
@@ -21,17 +21,16 @@ namespace API_Project.Controllers
         }
 
         [HttpPost]
-        [Route("{user}")]
-        public object AddUser(string user)
+        public object AddUser(User user)
         {
             users.Add(user);
             return Ok();
         }
 
         [HttpDelete]
-        [Route("{user}")]
-        public object DeleteUser(string user)
+        public object DeleteUser(User userParam)
         {
+            var user = users.FirstOrDefault(a => a.Username == userParam.Username);
             users.Remove(user);
             return Ok();
         }

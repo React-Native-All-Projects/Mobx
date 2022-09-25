@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace API_Project.Models
 {
-    public class LogIn
+    public class User
     {
         [Required]
-        public string UserName { get; set; }
+        public string Username { get; set; }
         [Required]
         public string Password { get; set; }
     }
