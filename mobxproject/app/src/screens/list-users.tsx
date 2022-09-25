@@ -7,9 +7,7 @@ import { useStores } from "../../utils/store/config/root-store/root-store-contex
 const ListUsers = () =>{
 
     const {usersStoreModel} = useStores();
-    const {users} = usersStoreModel;
-
-    const [loading,setLoading] = useState(false);
+    const {users,loading} = usersStoreModel;
 
     useEffect(()=>{
         refreshUserList();
@@ -28,10 +26,8 @@ const ListUsers = () =>{
     }
 
     const refreshUserList = async () =>{
-        setLoading(true);
         await usersStoreModel.resetUsers();
         await usersStoreModel.getUsers();
-        setLoading(false);
     }
 
     const UserItem = ({item,index}:any) =>{

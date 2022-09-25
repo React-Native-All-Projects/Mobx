@@ -8,17 +8,23 @@ export const UsersStoreModel = types
   .volatile(() =>
   ({
     users: [] as UserModel[],
+    loading: false as Boolean
   }))
   .extend(withEnvironment)
   .actions((self) => ({
     saveUsers: (data: UserModel[]) => {
       self.users = data;
     },
+    changeLoading: (state: Boolean) => {
+      self.loading = state;
+    },
   }))
   .actions((self) => ({
     getUsers: async (params?:string) => {
       const api = new UsersApi(self.environment.api);
+      self.changeLoading(true);
       const result = await api.getUsers(params)
+      self.changeLoading(false);
 
       if (result.type === "ok") {
         self.saveUsers(result.data ?? []);

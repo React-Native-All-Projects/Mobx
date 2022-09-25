@@ -14,7 +14,7 @@ export class UsersApi {
     try {
       // make the api call
       const response: ApiResponse<any> = this.api.apisauce ? await this.api.apisauce.post(
-        "TestAPI?" + (extraParams || ''),body
+        "TestAPI?" + (extraParams || ''),body,
       ) : <any>{}
 
       if(!response.ok){
@@ -30,9 +30,13 @@ export class UsersApi {
 
   async getUsers(extraParams?: string): Promise<GetUsersListResult> {
     try {
-      // make the api call
+      const config = {
+        onDownloadProgress: function(progressEvent:any) {
+        var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+        console.log(percentCompleted)
+      }}
       const response: ApiResponse<any> = this.api.apisauce ? await this.api.apisauce.get(
-        "TestAPI?" + (extraParams || '')
+        "TestAPI?" + (extraParams || ''),{},config
       ) : <any>{}
 
       // the typical ways to die when calling an api

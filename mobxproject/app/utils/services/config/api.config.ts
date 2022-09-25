@@ -1,7 +1,7 @@
 // Use this import if you want to use "env.js" file
 // const { API_URL } = require("../../config/env")
 // Or just specify it directly like this:
-const API_URL = 'http://3b0c-109-107-253-33.ngrok.io/api/'
+const API_URL = 'http://fe87-109-107-253-33.ngrok.io/api/'
 
 /**
  * The options used to configure the API.
