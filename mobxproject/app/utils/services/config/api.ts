@@ -25,7 +25,7 @@ export class Api {
    this.config = config
  }
 
- async setup(isMobile: boolean) {
+ async setup() {
     this.apisauce = create({
       baseURL: this.config.url,
       timeout: this.config.timeout,
@@ -34,7 +34,7 @@ export class Api {
 
     this.apisauce.axiosInstance.interceptors.request.use(
       async (config) => {
-        config.headers = await this.getHeaders(config.headers, isMobile);
+        config.headers = await this.getHeaders(config.headers);
         return config;
       },
       error => {
@@ -60,7 +60,7 @@ export class Api {
     });
   }
 
-  async getHeaders(customHeaders: any = {}, isMobile: boolean) {
+  async getHeaders(customHeaders: any = {}) {
     let token = 'My Token';
     var headers: any = {
       Accept: "application/json",

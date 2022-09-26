@@ -9,8 +9,8 @@ export class Environment {
     this.api = new Api()
   }
 
-  async setup(isMobile: boolean) {
-    await this.api.setup(isMobile)
+  async setup() {
+    await this.api.setup()
   }
   /**
    * Our api.

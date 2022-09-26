@@ -10,7 +10,7 @@ const Layout = () =>{
 
     useEffect(() => {
       (async () => {
-        setupRootStore(true).then(setRootStore)
+        setupRootStore().then(setRootStore)
       })()
     }, []);
 
