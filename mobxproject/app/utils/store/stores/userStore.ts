@@ -2,6 +2,7 @@ import { Instance, SnapshotIn, SnapshotOut, types } from "mobx-state-tree"
 import { UserModel, UsersParams } from "../../models/models/users";
 import { UsersApi } from "../../services/apis/users";
 import { withEnvironment } from "../config/extensions/with-environment";
+import { withRootStore } from "../config/extensions/with-root";
 
 export const UsersStoreModel = types
   .model("UsersStore")
@@ -11,6 +12,7 @@ export const UsersStoreModel = types
     loading: false as Boolean
   }))
   .extend(withEnvironment)
+  .extend(withRootStore)
   .actions((self) => ({
     saveUsers: (data: UserModel[]) => {
       self.users = data;
